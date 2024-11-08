@@ -2,7 +2,7 @@
 
 
 body {
-  background-image: url("../images/background.png");
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,7 +23,7 @@ body {
   padding: 20px 15px;
 }
 
-.SearchEngine {
+.Search {
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -32,7 +32,7 @@ body {
   margin-top: 10px;
 } 
 
-.SearchEngine input {
+.Search input {
   width: 70%;
   height: 40px;
   border: none;
@@ -44,13 +44,13 @@ body {
   color: #555;
 }
 
-.SearchEngine input::placeholder {
+.Search input::placeholder {
   color: #555;
   font-weight: 500;
   font-style: italic;
 }
 
-.SearchEngine button {
+.Search button {
   width: 78px; /* Updated */
   height: 44px; /* Updated */
   border: none;
@@ -62,11 +62,11 @@ body {
   cursor: pointer;
 }
 
-.SearchEngine button:hover {
+.Search button:hover {
   background-color: #fff;
 }
 
-.SearchEngine button:hover i {
+.Search button:hover i {
   color: #f06789;
 }
 

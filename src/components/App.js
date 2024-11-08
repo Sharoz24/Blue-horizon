@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SearchEngine from "./SearchEngine";
+import Search from "./Search";
 import Forecast from "./Forecast";
+import { toDate } from "../utils";
 
 import "../styles.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -14,36 +15,7 @@ function App() {
     error: false
   });
 
-  const toDate = () => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ];
-
-    const currentDate = new Date();
-    const date = `${days[currentDate.getDay()]} ${currentDate.getDate()} ${months[currentDate.getMonth()]
-      }`;
-    return date;
-  };
+ 
   //new search function
   const search = async (event) => {
     event.preventDefault();
@@ -55,12 +27,10 @@ function App() {
       await axios
         .get(url)
         .then((res) => {
-          console.log("res", res);
           setWeather({ data: res.data, loading: false, error: false });
         })
         .catch((error) => {
           setWeather({ ...weather, data: {}, error: true });
-          console.log("error", error);
         });
     }
   };
@@ -68,14 +38,13 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const apiKey = "b03a640e5ef6980o4da35b006t5f2942";
-      const url = `https://api.shecodes.io/weather/v1/current?query=Rabat&key=${apiKey}`;
+      const url = `https://api.shecodes.io/weather/v1/current?query=Shahjahanpur&key=${apiKey}`;
 
       try {
         const response = await axios.get(url);
         setWeather({ data: response.data, loading: false, error: false });
       } catch (error) {
         setWeather({ data: {}, loading: false, error: true });
-        console.log("error", error);
       }
     };
 
@@ -85,8 +54,8 @@ function App() {
   return (
     <div className="App">
 
-      {/* SearchEngine component */}
-      <SearchEngine query={query} setQuery={setQuery} search={search} />
+
+      <Search query={query} setQuery={setQuery} search={search} />
 
       {weather.loading && (
         <>

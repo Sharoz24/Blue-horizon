@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReactAnimatedWeather from "react-animated-weather";
+import {formatDay, getCurrentDate, toggleTemperatureUnit, renderTemperature  } from "../utils";
+
 
 function Forecast({ weather }) {
   const { data } = weather;
@@ -23,42 +25,7 @@ function Forecast({ weather }) {
     fetchForecastData();
   }, [data.city]);
 
-  const formatDay = (dateString) => {
-    const options = { weekday: "short" };
-    const date = new Date(dateString * 1000);
-    return date.toLocaleDateString("en-US", options);
-  };
-
-  const getCurrentDate = () => {
-    const options = {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    };
-    const currentDate = new Date().toLocaleDateString("en-US", options);
-    return currentDate;
-  };
-
-  const toggleTemperatureUnit = () => {
-    setIsCelsius((prevState) => !prevState);
-  };
-
-  const convertToCelsius = (temperature) => {
-    return Math.round((temperature - 32) * (5 / 9));
-  };
-
-  const convertToFahrenheit = (temperature) => {
-    return Math.round((temperature * 9) / 5 + 32);
-  };
-
-  const renderTemperature = (temperature) => {
-    if (isCelsius) {
-      return Math.round(temperature);
-    } else {
-      return convertToFahrenheit(temperature);
-    }
-  };
+  
 
   return (
     <div>
@@ -78,7 +45,7 @@ function Forecast({ weather }) {
             className="temp-icon"
           />
         )}
-        {renderTemperature(data.temperature.current)}
+        {renderTemperature(data.temperature.current, isCelsius)}
         <sup className="temp-deg" onClick={toggleTemperatureUnit}>
           {isCelsius ? "°C" : "°F"} | {isCelsius ? "°F" : "°C"}
         </sup>

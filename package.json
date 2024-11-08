@@ -2,7 +2,7 @@
   "name": "react-weather-app",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": ["Sharoz", "weather-app"],
   "main": "src/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
